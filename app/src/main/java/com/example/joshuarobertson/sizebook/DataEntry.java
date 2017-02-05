@@ -1,5 +1,10 @@
 package com.example.joshuarobertson.sizebook;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.EditText;
+
 /**
  * Created by joshuarobertson on 2017-02-04.
  */
@@ -31,6 +36,35 @@ public class DataEntry {
         this.comment = "";
     }
 
+    public DataEntry(Bundle bundle) {
+        this.setName(bundle.getString("name"));
+        this.setDate(bundle.getString("year"),bundle.getString("month"),bundle.getString("day"));
+        this.setNeck(bundle.getString("neck"));
+        this.setBust(bundle.getString("bust"));
+        this.setChest(bundle.getString("chest"));
+        this.setWaist(bundle.getString("waist"));
+        this.setHip(bundle.getString("hip"));
+        this.setInseam(bundle.getString("inseam"));
+        this.setComment(bundle.getString("comment"));
+    }
+
+    public Intent AppendToIntent(Intent intent) {
+
+        intent.putExtra("name", this.getName());
+        intent.putExtra("day", this.getDay());
+        intent.putExtra("month", this.getMonth());
+        intent.putExtra("year", this.getYear());
+        intent.putExtra("neck", this.getNeck());
+        intent.putExtra("bust", this.getBust());
+        intent.putExtra("chest", this.getChest());
+        intent.putExtra("waist", this.getWaist());
+        intent.putExtra("hip", this.getHip());
+        intent.putExtra("inseam", this.getInseam());
+        intent.putExtra("comment", this.getComment());
+
+        return intent;
+    }
+
     @Override
     public String toString() {
         return this.getName();
@@ -42,14 +76,6 @@ public class DataEntry {
         this.day = day;
     }
 
-    public void setMeasurements(String neck, String bust, String chest, String waist, String hip, String inseam) {
-        this.neck = neck;
-        this.bust = bust;
-        this.chest = chest;
-        this.waist = waist;
-        this.hip = hip;
-        this.inseam = inseam;
-    }
     public String getName() {
         return name;
     }

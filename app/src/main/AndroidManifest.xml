@@ -17,6 +17,9 @@
         </activity>
         
         <activity android:name=".NewEntry" ></activity>
+        <activity android:name=".ViewEntry" ></activity>
+        <activity android:name=".EditEntry" ></activity>
     </application>
+
 
 </manifest>
