@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SizeBook</string>
+
+    <string name="entry_name">Name: </string>
+
+    <string name="entry_date">Date of Entry: </string>
+    <string name="entry_year">Year: </string>
+    <string name="entry_month">Month: </string>
+    <string name="entry_day">Day: </string>
+
+
+    <string name="entry_measurement">Measurements: </string>
+    <string name="entry_neck">Neck: </string>
+    <string name="entry_bust">Bust: </string>
+    <string name="entry_chest">Chest: </string>
+    <string name="entry_waist">Waist: </string>
+    <string name="entry_hip">Hip: </string>
+    <string name="entry_inseam">Inseam: </string>
+
+
+    <string name="entry_comment">Comments: </string>
+    <string name="entry_comment_hint"> -- Any additional comments -- </string>
+
+
+</resources>

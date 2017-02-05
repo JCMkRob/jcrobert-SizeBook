@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <Button
+        android:id="@+id/button_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/button_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Finish" />
+
+    <LinearLayout
+        android:id="@+id/name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:weightSum="1.0">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_name"
+            />
+        <EditText
+            android:id="@+id/name"
+            android:maxLength="25"
+            android:inputType="textPersonName"
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/date_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/name_field">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/date_entry_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/date_field">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.10"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_year" />
+        <EditText
+            android:id="@+id/year"
+            android:inputType="date"
+            android:maxLength="4"
+            android:layout_width="0dip"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_month" />
+        <EditText
+            android:id="@+id/month"
+            android:inputType="date"
+            android:maxLength="2"
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_day" />
+        <EditText
+            android:id="@+id/day"
+            android:inputType="date"
+            android:maxLength="2"
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/measurement_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/date_entry_field">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_measurement" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/data_field_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/measurement_field">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_neck"/>
+        <EditText
+            android:id="@+id/neck"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background" />
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_bust"/>
+        <EditText
+            android:id="@+id/bust"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"/>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_chest"/>
+        <EditText
+            android:id="@+id/chest"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/data_field_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/data_field_1">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_waist"/>
+        <EditText
+            android:id="@+id/waist"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"/>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_hip"/>
+        <EditText
+            android:id="@+id/hip"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+
+            android:background="@android:drawable/editbox_background"/>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_inseam"/>
+        <EditText
+            android:id="@+id/inseam"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comment_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1.0"
+        android:layout_below="@+id/data_field_2">
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_weight="1.0"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_comment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comment_entry_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment_field"
+        android:layout_above="@+id/button_left">
+
+        <EditText
+            android:id="@+id/comment"
+            android:hint="@string/entry_comment_hint"
+            android:inputType="text"
+            android:maxLength="500"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+
+            android:background="@android:drawable/editbox_background" />
+    </LinearLayout>
+</RelativeLayout>
