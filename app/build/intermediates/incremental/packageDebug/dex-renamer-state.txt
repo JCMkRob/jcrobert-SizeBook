@@ -1,0 +1,7 @@
+#Sun Feb 05 23:13:01 MST 2017
+base.0=/Users/joshuarobertson/Documents/GitProjects/SizeBook/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ca343a36683a41f5a261b769e6d66b0467fc6986
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/joshuarobertson/Documents/GitProjects/SizeBook/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_94945b542ae90c2181c5b2209ec6a94a0ed6a2bc/classes.dex
+base.1=/Users/joshuarobertson/Documents/GitProjects/SizeBook/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_94945b542ae90c2181c5b2209ec6a94a0ed6a2bc
+file.0=/Users/joshuarobertson/Documents/GitProjects/SizeBook/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ca343a36683a41f5a261b769e6d66b0467fc6986/classes.dex
