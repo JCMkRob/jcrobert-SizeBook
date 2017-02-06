@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
     <Button
@@ -9,9 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:text="Cancel" />
+        android:layout_alignParentStart="true"
+        android:text="@string/edit_left" />
 
     <Button
         android:id="@+id/button_right"
@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Finish" />
+        android:text="@string/edit_right" />
 
     <LinearLayout
         android:id="@+id/name_field"
@@ -31,19 +31,18 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_name"
-            />
+            android:layout_weight="0.15"
+            android:text="@string/entry_name" />
+
         <EditText
             android:id="@+id/name"
-            android:maxLength="25"
-            android:inputType="textPersonName"
             android:layout_width="0dp"
-            android:layout_weight="0.85"
             android:layout_height="wrap_content"
+            android:layout_weight="0.85"
             android:background="@android:drawable/editbox_background"
-            />
+            android:inputType="textPersonName"
+            android:maxLength="25" />
 
     </LinearLayout>
 
@@ -51,14 +50,14 @@
         android:id="@+id/date_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/name_field">
+        android:layout_below="@+id/name_field"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="1.0"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
             android:text="@string/entry_date" />
     </LinearLayout>
 
@@ -66,67 +65,67 @@
         android:id="@+id/date_entry_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/date_field">
+        android:layout_below="@+id/date_field"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.10"
             android:layout_height="wrap_content"
+            android:layout_weight="0.10"
             android:text="@string/entry_year" />
+
         <EditText
             android:id="@+id/year"
-            android:inputType="date"
-            android:maxLength="4"
             android:layout_width="0dip"
-            android:layout_weight="0.25"
             android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:background="@android:drawable/editbox_background"
-            />
+            android:inputType="number"
+            android:maxLength="4" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
+            android:layout_weight="0.15"
             android:text="@string/entry_month" />
+
         <EditText
             android:id="@+id/month"
-            android:inputType="date"
-            android:maxLength="2"
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
+            android:layout_weight="0.20"
             android:background="@android:drawable/editbox_background"
-            />
+            android:inputType="number"
+            android:maxLength="2" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
+            android:layout_weight="0.15"
             android:text="@string/entry_day" />
+
         <EditText
             android:id="@+id/day"
-            android:inputType="date"
-            android:maxLength="2"
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
+            android:layout_weight="0.20"
             android:background="@android:drawable/editbox_background"
-            />
+            android:inputType="number"
+            android:maxLength="2" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/measurement_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/date_entry_field">
+        android:layout_below="@+id/date_entry_field"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="1.0"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
             android:text="@string/entry_measurement" />
     </LinearLayout>
 
@@ -134,115 +133,120 @@
         android:id="@+id/data_field_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/measurement_field">
+        android:layout_below="@+id/measurement_field"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_neck"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_neck" />
+
         <EditText
             android:id="@+id/neck"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background" />
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_bust"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_bust" />
+
         <EditText
             android:id="@+id/bust"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"/>
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_chest"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_chest" />
+
         <EditText
             android:id="@+id/chest"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"/>
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/data_field_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/data_field_1">
+        android:layout_below="@+id/data_field_1"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_waist"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_waist" />
+
         <EditText
             android:id="@+id/waist"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"/>
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_hip"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_hip" />
+
         <EditText
             android:id="@+id/hip"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-
-            android:background="@android:drawable/editbox_background"/>
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:text="@string/entry_inseam"/>
+            android:layout_weight="0.15"
+            android:text="@string/entry_inseam" />
+
         <EditText
             android:id="@+id/inseam"
-            android:inputType="number"
-            android:maxLength="3"
             android:layout_width="0dp"
-            android:layout_weight="0.15"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"/>
+            android:layout_weight="0.20"
+            android:background="@android:drawable/editbox_background"
+            android:inputType="numberDecimal"
+            android:maxLength="4" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/comment_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:layout_below="@+id/data_field_2">
+        android:layout_below="@+id/data_field_2"
+        android:weightSum="1.0">
 
         <TextView
             android:layout_width="0dip"
-            android:layout_weight="1.0"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
             android:text="@string/entry_comment" />
     </LinearLayout>
 
@@ -250,17 +254,21 @@
         android:id="@+id/comment_entry_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/comment_field"
-        android:layout_above="@+id/button_left">
+        android:layout_above="@+id/button_left"
+        android:layout_below="@+id/comment_field">
 
         <EditText
             android:id="@+id/comment"
-            android:hint="@string/entry_comment_hint"
-            android:inputType="text"
-            android:maxLength="500"
-            android:layout_height="fill_parent"
             android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:gravity="top|left"
 
-            android:background="@android:drawable/editbox_background" />
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:maxLines="10"
+
+
+            android:minLines="10" />
     </LinearLayout>
 </RelativeLayout>

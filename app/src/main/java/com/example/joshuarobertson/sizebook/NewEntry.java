@@ -1,42 +1,48 @@
 package com.example.joshuarobertson.sizebook;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * Created by joshuarobertson on 2017-02-04.
+ *
+ *  *
+ * The class is very simple, look at the Entry documentation
+ * for more details.
+ *
+ * @see Entry
  */
 public class NewEntry extends Entry {
-
-    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.entry_window);
-
-
-
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int)(width*.95),(int)(height*.95));
+        setWindowStyle();
+        setBoundaries();
 
         Button create = (Button) findViewById(R.id.button_right);
+        Button cancel = (Button) findViewById(R.id.button_left);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(RESULT_OK, dataToIntent());
+                EditText userName = (EditText) findViewById(R.id.name);
+                if( userName.getText().toString().trim().equals("")){
+                    userName.setError( "Name Required!" );
+                }else{
+                    setResult(RESULT_OK, dataToIntent());
+                    finish();
+                }
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });

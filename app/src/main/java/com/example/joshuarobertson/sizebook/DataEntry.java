@@ -2,11 +2,19 @@ package com.example.joshuarobertson.sizebook;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 
 /**
  * Created by joshuarobertson on 2017-02-04.
+ *
+ * This is the class that I use to encapsulate data.
+ * The two main methods are the Constructor and the AppendToIntent().
+ *
+ * In the future I would add another constructor to create "blank" DataEntries,
+ * for use in the refactoring of Entry.
+ *
+ * @see Entry
+ * @version 1.0
+ * @author  jcrobert
  */
 public class DataEntry {
 
@@ -22,23 +30,21 @@ public class DataEntry {
     private String inseam;
     private String comment;
 
-    public DataEntry(String name) {
-        this.name = name;
-        this.year = "";
-        this.month = "";
-        this.day = "";
-        this.neck = "";
-        this.bust = "";
-        this.chest = "";
-        this.waist = "";
-        this.hip = "";
-        this.inseam = "";
-        this.comment = "";
-    }
 
+    /**
+     * Instantiates a new Data entry.
+     *
+     * The lone constructor takes in a bundle and uses it to make a new data entry.
+     * Bundles are passed on return from an Activity, so in essence this allows for
+     * quick recreation of a data entry from an entry activity, such as EditEntry.
+     *
+     * @param bundle the bundle
+     */
     public DataEntry(Bundle bundle) {
         this.setName(bundle.getString("name"));
-        this.setDate(bundle.getString("year"),bundle.getString("month"),bundle.getString("day"));
+        this.setYear(bundle.getString("year"));
+        this.setMonth(bundle.getString("month"));
+        this.setDay(bundle.getString("day"));
         this.setNeck(bundle.getString("neck"));
         this.setBust(bundle.getString("bust"));
         this.setChest(bundle.getString("chest"));
@@ -48,6 +54,17 @@ public class DataEntry {
         this.setComment(bundle.getString("comment"));
     }
 
+    /**
+     * Append to intent intent.
+     *
+     * Intents are how activities communicate.
+     * This method allows a data entry to be attached to an intent.
+     * Within Entry is a method to quickly extract the data and make
+     * a new DataEntry using the DataEntry(Bundle bundle) constructor.
+     *
+     * @param intent the intent
+     * @return the intent
+     */
     public Intent AppendToIntent(Intent intent) {
 
         intent.putExtra("name", this.getName());
@@ -61,19 +78,12 @@ public class DataEntry {
         intent.putExtra("hip", this.getHip());
         intent.putExtra("inseam", this.getInseam());
         intent.putExtra("comment", this.getComment());
-
         return intent;
     }
 
     @Override
     public String toString() {
         return this.getName();
-    }
-
-    public void setDate(String year, String month, String day) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
     }
 
     public String getName() {
@@ -161,6 +171,6 @@ public class DataEntry {
     }
 
     public void setComment(String comment) {
-        comment = comment;
+        this.comment = comment;
     }
 }

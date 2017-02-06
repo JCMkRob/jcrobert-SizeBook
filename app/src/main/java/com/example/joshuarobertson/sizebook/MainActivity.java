@@ -1,22 +1,16 @@
 package com.example.joshuarobertson.sizebook;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,24 +21,59 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-
+/**
+ * The type Main activity.
+ *
+ * This activity can only do two things: Launch an NewEntry activity (button)
+ * or a ViewEntry activity (clicking a data entry).
+ *
+ * However, this activity is responsible for launching all Entry activities,
+ * and managing data, and displaying the number of current entries.
+ *
+ * This activity is responsible for creating, updating, deleting,
+ * saving, and loading data entries.
+ *
+ * entries are stored in DataList. Whenever an entry is created/updated/deleted
+ * all entries are saved.
+ *
+ * When the app starts [ onStart() ] the entries are loaded.
+ *
+ * On return of an activity, action is taken based on the return value.
+ *
+ * NewEntry: create a new DataEntry or pass.
+ * ViewEntry: Launch an EditEntry, delete the DataEntry, or pass.
+ * EditEntry: update an existing DataEntry or pass.
+ *
+ * The main requirements are DataEntry and Entry. (Some Renaming might be in order)
+ *
+ * @see Entry
+ * @see DataEntry
+ *
+ * @version 1.0
+ * @author  jcrobert
+ *
+ */
 public class MainActivity extends Activity {
+    private TextView textView;
 
     private static final String FILENAME = "file.sav";
     private ListView ListOfPeople;
 
-    private ArrayList<DataEntry> DataList; /* CHANGE */
-    private ArrayAdapter<DataEntry> adapter; /* CHANGE */
+    private ArrayList<DataEntry> DataList;
+    private ArrayAdapter<DataEntry> adapter;
+
+    //TODO: Extract these message flags to global area. (How?)
+    public static final int CREATE = 10;
+    public static final int VIEW = 20;
+    public static final int EDIT = 30;
+    public static final int DELETE = 40;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +82,13 @@ public class MainActivity extends Activity {
         DataList = new ArrayList<DataEntry>();
 
         Button create = (Button) findViewById(R.id.button_right);
-
-
         ListOfPeople = (ListView) findViewById(R.id.listOfPeople);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("Button","Create");
-                startActivityForResult(new Intent(MainActivity.this, NewEntry.class), 1); //1 is request code
+                startActivityForResult(new Intent(MainActivity.this, NewEntry.class), CREATE);
             }
         });
 
@@ -69,16 +96,11 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
                 DataEntry entry = (DataEntry) parent.getAdapter().getItem(position);
-                Log.d("OnItemClick", "Made new DataEntry from List: "+entry.getName());
                 Intent intent = new Intent(MainActivity.this, ViewEntry.class);
-                Log.d("OnItemClick", "Made new Intent.");
                 intent = entry.AppendToIntent(intent);
-                Log.d("OnItemClick", "Appended DataEntry to intent.");
-                Log.d("OnItemClick", "Starting activity...");
                 intent.putExtra("position", position);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, VIEW);
             }
         });
     }
@@ -87,21 +109,21 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode) {
-            case (1) : {
+            case (CREATE) : {
                 if (resultCode == Activity.RESULT_OK) {
                     // TODO Extract the data returned from the child Activity.
                     Bundle bundle = data.getExtras();
                     DataList.add(new DataEntry(bundle));
                     adapter.notifyDataSetChanged();
+                    updateEntryCount();
                     saveInFile();
                     Log.d("AppendToDataList",DataList.toString());
                 }
                 break;
             }
 
-            case (2) : {
-                if (resultCode == 0) {
-                    //edit
+            case (VIEW) : {
+                if (resultCode == EDIT) {
                     Bundle bundle = data.getExtras();
                     DataEntry entry = DataList.get((int)bundle.get("position"));
                     Intent intent = new Intent(MainActivity.this, EditEntry.class);
@@ -109,34 +131,25 @@ public class MainActivity extends Activity {
                     intent = entry.AppendToIntent(intent);
 
                     intent.putExtra("position", (int)bundle.get("position"));
-                    startActivityForResult(intent, 3);
+                    startActivityForResult(intent, EDIT);
 
                 }
-                if (resultCode == 1) {
-                    //delete
+                if (resultCode == DELETE) {
                     Bundle bundle = data.getExtras();
                     DataList.remove((int)bundle.get("position"));
                     adapter.notifyDataSetChanged();
+                    updateEntryCount();
                     saveInFile();
-
-                }
-                if (resultCode == 2) {
-                    //ignore
                 }
                 break;
             }
 
-            case (3) : {
-                if (resultCode == 0) {
-                    //cancel
-
-
-                }
-                if (resultCode == 1) {
-                    //commit
+            case (EDIT) : {
+                if (resultCode == CREATE) {
                     Bundle bundle = data.getExtras();
                     DataList.set((int)bundle.get("position"), new DataEntry(bundle));
                     adapter.notifyDataSetChanged();
+                    updateEntryCount();
                     saveInFile();
                 }
                 break;
@@ -148,28 +161,30 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
         loadFromFile();
 
         adapter = new ArrayAdapter<DataEntry>(this, R.layout.list_view_people, DataList);
         ListOfPeople.setAdapter(adapter);
+
+        textView = (TextView) findViewById(R.id.entry_count);
+        updateEntryCount();
     }
 
     private void loadFromFile() {
         try {
+            DataList = new ArrayList<DataEntry>();
+
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
             Gson gson = new Gson();
 
-            //TA took the solution from stackoverflow
+            //TA took the solution from StackOverFlow
             Type listType = new TypeToken<ArrayList<DataEntry>>(){}.getType();
             DataList = gson.fromJson(in, listType);
 
         } catch (FileNotFoundException e) {
-            DataList = new ArrayList<DataEntry>();
-        } catch (IOException e) {
-            throw new RuntimeException();
+            //TODO: Handle Exception
         }
     }
 
@@ -185,10 +200,16 @@ public class MainActivity extends Activity {
 
             fos.close();
         } catch (FileNotFoundException e) {
-            // TODO: Handle the Exception later
+            // TODO: Handle the Exception later.
             throw new RuntimeException();
         } catch (IOException e) {
+            //TODO: Handle this Exception.
             throw new RuntimeException();
         }
+    }
+
+    private void updateEntryCount() {
+        String s = "entries: "+ DataList.size();
+        textView.setText(s, TextView.BufferType.EDITABLE);
     }
 }
